@@ -2,8 +2,18 @@
 import { ref } from 'vue'
 import LocawebLogo from './icons/LocawebLogo.vue'
 import VideoImageVue from './images/VideoImage.vue'
+import { authStore } from '@/store'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const showLogout = ref(false)
+
+const logout = () => {
+  authStore.logout()
+
+  router.push({ path: 'login' })
+}
 
 const toggleShowLogout = () => {
   showLogout.value = !showLogout.value
@@ -21,7 +31,9 @@ const toggleShowLogout = () => {
         >
           J
         </button>
-        <button v-if="showLogout" class="bg-white block pl-20 pr-5 py-3 rounded-md">Sair</button>
+        <button v-if="showLogout" @click="logout" class="bg-white block pl-20 pr-5 py-3 rounded-md">
+          Sair
+        </button>
       </div>
     </nav>
   </header>
