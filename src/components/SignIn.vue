@@ -36,7 +36,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="h-2/3 mx-auto pt-47.5 w-5/12">
+  <section class="h-2/3 mx-auto pt-47.5 w-5/12 max-w-2xl">
     <LocawebLogo class="mb-8 mx-auto" />
     <form
       @submit="authenticate"
