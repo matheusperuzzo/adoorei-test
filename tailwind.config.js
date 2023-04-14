@@ -25,6 +25,9 @@ export default {
       fontSize: {
         7: '1.75rem'
       },
+      maxWidth: {
+        244: '61rem'
+      },
       spacing: {
         1.25: '0.313rem',
         3.75: '0.938rem',
