@@ -36,7 +36,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="h-2/3 mx-auto pt-47.5 w-5/12 max-w-2xl">
+  <main class="h-2/3 mx-auto pt-47.5 w-5/12 max-w-2xl">
     <LocawebLogo class="mb-8 mx-auto" />
     <form
       @submit="authenticate"
@@ -72,5 +72,5 @@ onMounted(() => {
     <div class="leading-5.5 text-center text-lg">
       Ainda não tem conta? <a class="text-rose underline" href="#">Cadastre-se</a>
     </div>
-  </section>
+  </main>
 </template>
