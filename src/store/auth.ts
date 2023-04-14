@@ -9,8 +9,10 @@ export interface LoginBody {
 }
 
 type AuthStore = {
-  token: string
+  token?: string
+  user?: User
   login: (body: LoginBody) => Promise<HttpResponse>
+  logout: () => void
 }
 
 const checkUser = (email: string): User | null => {
@@ -24,7 +26,6 @@ const checkUser = (email: string): User | null => {
 }
 
 export const authStore = reactive<AuthStore>({
-  token: '',
   async login({ email, password }) {
     const userExists = checkUser(email)
 
@@ -51,6 +52,7 @@ export const authStore = reactive<AuthStore>({
     const data = await response.json()
 
     this.token = data.token
+    this.user = userExists
 
     return {
       code: 200,
@@ -58,5 +60,9 @@ export const authStore = reactive<AuthStore>({
         token: this.token
       }
     }
+  },
+  logout() {
+    delete this.token
+    delete this.user
   }
 })
