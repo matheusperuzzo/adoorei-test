@@ -4,6 +4,7 @@ export default {
   theme: {
     colors: {
       black: '#292d32',
+      neutral: '#d9d9d9',
       rose: '#F30168',
       slate: {
         50: '#f8fafc',
@@ -21,11 +22,16 @@ export default {
       white: '#FFFFFF'
     },
     extend: {
+      fontSize: {
+        7: '1.75rem'
+      },
       spacing: {
         1.25: '0.313rem',
         3.75: '0.938rem',
         6.25: '1.563rem',
         7.5: '1.875rem',
+        9.5: '2.35rem',
+        13: '3.25rem',
         47.5: '11.875rem'
       }
     }
