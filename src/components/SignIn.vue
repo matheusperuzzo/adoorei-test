@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 import { authStore, userStore } from '@/store'
-import LocawebLogo from './icons/LocawebLogo.vue'
 
 import type { LoginBody } from '@/store'
-import { useRouter } from 'vue-router'
+
+import FormField from './UI/FormFieldComponent.vue'
+import LocawebLogo from './icons/LocawebLogo.vue'
 
 const credentials = ref<LoginBody>({
   email: '',
@@ -44,27 +46,18 @@ onMounted(() => {
     >
       <h2 class="font-bold mb-1.25 text-3xl">Entre na sua conta</h2>
       <p class="leading-snug text-lg mb-5">Para acessar sua conta informe seu e-mail e senha</p>
-      <div class="mb-3.75 w-full">
-        <label class="block leading-5" for="email">E-mail</label>
-        <input
-          v-model="credentials.email"
-          class="border border-slate-700/50 pl-4 py-7.5 rounded-md placeholder:text-black w-full"
-          type="email"
-          id="email"
-          placeholder="Seu e-mail"
-        />
-      </div>
-      <div class="mb-6.25 w-full">
-        <label class="block leading-5" for="password">Senha</label>
-        <input
-          v-model="credentials.password"
-          class="border border-slate-700/50 mb-1.25 pl-4 py-7.5 rounded-md placeholder:text-black w-full"
-          type="password"
-          id="password"
-          placeholder="Sua senha"
-        />
-        <a class="block text-end text-slate-700" href="#">Esqueci minha senha</a>
-      </div>
+      <FormField
+        id="email"
+        placeholder="Seu e-mail"
+        type="email"
+        v-model:value="credentials.email"
+      />
+      <FormField
+        id="password"
+        placeholder="Sua senha"
+        type="password"
+        v-model:value="credentials.password"
+      />
       <button class="bg-rose leading-5 py-7.5 rounded-md text-center text-white w-full">
         FAZER LOGIN
       </button>
