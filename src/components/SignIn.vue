@@ -67,13 +67,13 @@ onMounted(() => {
         >
           <span class="block mt-1.25 text-end text-slate-700">Esqueci minha senha</span>
         </FormField>
-        <button class="bg-rose leading-5 py-7.5 rounded-md text-center text-white w-full">
+        <button class="bg-primary leading-5 py-7.5 rounded-md text-center text-white w-full">
           FAZER LOGIN
         </button>
       </form>
     </Card>
     <div class="leading-5.5 text-center text-lg">
-      Ainda não tem conta? <a class="text-rose underline" href="#">Cadastre-se</a>
+      Ainda não tem conta? <a class="text-primary underline" href="#">Cadastre-se</a>
     </div>
   </main>
 </template>

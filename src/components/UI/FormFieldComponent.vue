@@ -49,7 +49,7 @@ const value = computed({
       :type="type"
       v-model="value"
     />
-    <span class="text-rose text-xs" v-if="formValidation.isTouched && !formValidation.isValid">{{
+    <span class="text-primary text-xs" v-if="formValidation.isTouched && !formValidation.isValid">{{
       errorMsg
     }}</span>
     <slot></slot>

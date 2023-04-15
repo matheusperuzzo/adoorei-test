@@ -4,8 +4,32 @@ export default {
   theme: {
     colors: {
       black: '#292d32',
-      neutral: '#d9d9d9',
-      rose: '#F30168',
+      neutral: {
+        50: '#fafafa',
+        100: '#f4f4f4',
+        200: '#ececec',
+        300: '#e4e4e4',
+        400: '#dfdfdf',
+        500: '#d9d9d9',
+        600: '#d5d5d5',
+        700: 'cfcfcf',
+        800: 'cacaca',
+        900: 'c0c0c0',
+        DEFAULT: '#d9d9d9'
+      },
+      primary: {
+        50: '#fee1ed',
+        100: '#fbb3d2',
+        200: '#f980b4',
+        300: '#f74d95',
+        400: '#f5277f',
+        500: '#f30168',
+        600: '#f10160',
+        700: '#ef0155',
+        800: '#ed014b',
+        900: '#ea003a',
+        DEFAULT: '#f30168'
+      },
       slate: {
         50: '#f8fafc',
         100: '#f1f5f9',
@@ -17,9 +41,9 @@ export default {
         700: '#334155',
         800: '#1e293b',
         900: '#0f172a',
-        950: '#020617'
+        DEFAULT: '#64748b'
       },
-      white: '#FFFFFF'
+      white: '#ffffff'
     },
     extend: {
       fontSize: {
