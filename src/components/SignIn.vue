@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 
 import { authStore, userStore } from '@/store'
 
+import { emailRegex } from '@/shared/constants/email-regex'
 import type { LoginBody } from '@/store'
 
 import FormField from './UI/FormFieldComponent.vue'
@@ -32,6 +33,9 @@ const authenticate = async (event: Event) => {
   })
 }
 
+const emailValidation = (value: string) => emailRegex.test(value)
+const passwordValidation = (value: string) => value.length >= 6
+
 onMounted(() => {
   userStore.getAll()
 })
@@ -47,19 +51,23 @@ onMounted(() => {
       <h2 class="font-bold mb-1.25 text-3xl">Entre na sua conta</h2>
       <p class="leading-snug text-lg mb-5">Para acessar sua conta informe seu e-mail e senha</p>
       <FormField
+        error-msg="Insira um endereço de e-mail inválido!"
         id="email"
         placeholder="Seu e-mail"
         type="email"
+        :validation-fn="emailValidation"
         v-model:value="credentials.email"
       />
       <FormField
+        error-msg="A senha deve conter pelo menos 6 caracteres!"
         id="password"
         placeholder="Sua senha"
         type="password"
+        :validation-fn="passwordValidation"
         v-model:value="credentials.password"
       >
         <span class="block mt-1.25 text-end text-slate-700">Esqueci minha senha</span>
-      </FormControl>
+      </FormField>
       <button class="bg-rose leading-5 py-7.5 rounded-md text-center text-white w-full">
         FAZER LOGIN
       </button>
