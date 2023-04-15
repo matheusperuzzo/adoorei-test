@@ -31,5 +31,6 @@ const value = computed({
       :type="type"
       v-model="value"
     />
+    <slot></slot>
   </div>
 </template>

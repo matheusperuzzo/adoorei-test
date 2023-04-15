@@ -38,7 +38,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="h-2/3 mx-auto pt-47.5 w-5/12 max-w-2xl">
+  <main class="h-2/3 mx-auto py-47.5 w-5/12 max-w-2xl">
     <LocawebLogo class="mb-8 mx-auto" />
     <form
       @submit="authenticate"
@@ -57,7 +57,9 @@ onMounted(() => {
         placeholder="Sua senha"
         type="password"
         v-model:value="credentials.password"
-      />
+      >
+        <span class="block mt-1.25 text-end text-slate-700">Esqueci minha senha</span>
+      </FormControl>
       <button class="bg-rose leading-5 py-7.5 rounded-md text-center text-white w-full">
         FAZER LOGIN
       </button>
