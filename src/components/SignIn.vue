@@ -8,6 +8,7 @@ import { emailRegex } from '@/shared/constants/email-regex'
 import type { LoginBody } from '@/store'
 
 import FormField from './UI/FormFieldComponent.vue'
+import Card from './UI/CardComponent.vue'
 import LocawebLogo from './icons/LocawebLogo.vue'
 
 const credentials = ref<LoginBody>({
@@ -44,34 +45,33 @@ onMounted(() => {
 <template>
   <main class="h-2/3 mx-auto py-47.5 w-5/12 max-w-2xl">
     <LocawebLogo class="mb-8 mx-auto" />
-    <form
-      @submit="authenticate"
-      class="bg-white border border-slate-200 mb-8 px-8 py-8 rounded-md w-full"
-    >
-      <h2 class="font-bold mb-1.25 text-3xl">Entre na sua conta</h2>
-      <p class="leading-snug text-lg mb-5">Para acessar sua conta informe seu e-mail e senha</p>
-      <FormField
-        error-msg="Insira um endereço de e-mail inválido!"
-        id="email"
-        placeholder="Seu e-mail"
-        type="email"
-        :validation-fn="emailValidation"
-        v-model:value="credentials.email"
-      />
-      <FormField
-        error-msg="A senha deve conter pelo menos 6 caracteres!"
-        id="password"
-        placeholder="Sua senha"
-        type="password"
-        :validation-fn="passwordValidation"
-        v-model:value="credentials.password"
-      >
-        <span class="block mt-1.25 text-end text-slate-700">Esqueci minha senha</span>
-      </FormField>
-      <button class="bg-rose leading-5 py-7.5 rounded-md text-center text-white w-full">
-        FAZER LOGIN
-      </button>
-    </form>
+    <Card class="bg-white border border-slate-200 rounded-md mb-8 px-8 py-8 w-full">
+      <form @submit="authenticate">
+        <h2 class="font-bold mb-1.25 text-3xl">Entre na sua conta</h2>
+        <p class="leading-snug text-lg mb-5">Para acessar sua conta informe seu e-mail e senha</p>
+        <FormField
+          error-msg="Insira um endereço de e-mail válido."
+          id="email"
+          placeholder="Seu e-mail"
+          type="email"
+          :validation-fn="emailValidation"
+          v-model:value="credentials.email"
+        />
+        <FormField
+          error-msg="Insira uma senha válida (>= 6 caracteres)."
+          id="password"
+          placeholder="Sua senha"
+          type="password"
+          :validation-fn="passwordValidation"
+          v-model:value="credentials.password"
+        >
+          <span class="block mt-1.25 text-end text-slate-700">Esqueci minha senha</span>
+        </FormField>
+        <button class="bg-rose leading-5 py-7.5 rounded-md text-center text-white w-full">
+          FAZER LOGIN
+        </button>
+      </form>
+    </Card>
     <div class="leading-5.5 text-center text-lg">
       Ainda não tem conta? <a class="text-rose underline" href="#">Cadastre-se</a>
     </div>
