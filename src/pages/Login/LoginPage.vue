@@ -44,9 +44,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="h-2/3 mx-auto py-47.5 w-5/12 max-w-2xl">
+  <main class="py-47.5">
     <LocawebLogo class="mb-8 mx-auto" />
-    <Card class="bg-white border border-slate-200 rounded-md mb-8 px-8 py-8 w-full">
+    <Card class="bg-white border border-slate-200 mb-8 px-8 py-8 w-5/12 max-w-2xl">
       <form @submit="authenticate">
         <h2 class="font-bold mb-1.25 text-3xl">Entre na sua conta</h2>
         <p class="leading-snug text-lg mb-5">Para acessar sua conta informe seu e-mail e senha</p>
