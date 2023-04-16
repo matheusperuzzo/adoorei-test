@@ -11,6 +11,7 @@ import FormField from './UI/FormFieldComponent.vue'
 import Card from './UI/CardComponent.vue'
 import LocawebLogo from './icons/LocawebLogo.vue'
 import Button from './UI/ButtonComponent.vue'
+import Alert from './UI/AlertComponent.vue'
 
 const credentials = ref<LoginBody>({
   email: '',
@@ -50,6 +51,9 @@ onMounted(() => {
       <form @submit="authenticate">
         <h2 class="font-bold mb-1.25 text-3xl">Entre na sua conta</h2>
         <p class="leading-snug text-lg mb-5">Para acessar sua conta informe seu e-mail e senha</p>
+        <Transition name="fade">
+          <Alert :message="error" type="error" v-if="error" />
+        </Transition>
         <FormField
           error-msg="Insira um endereço de e-mail válido."
           id="email"
