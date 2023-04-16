@@ -2,15 +2,15 @@
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-import type { LoginBody } from '@/store'
+import type { LoginBody } from '@/app/store'
 
-import Alert from '@/components/UI/AlertComponent.vue'
-import Button from '@/components/UI/ButtonComponent.vue'
-import Card from '@/components/UI/CardComponent.vue'
-import FormField from '@/components/UI/FormFieldComponent.vue'
-import LocawebLogo from '@/components/assets/images/LocawebLogo.vue'
-import { emailRegex } from '@/shared/constants/email-regex'
-import { authStore, userStore } from '@/store'
+import Alert from '@/app/components/UI/AlertComponent.vue'
+import Button from '@/app/components/UI/ButtonComponent.vue'
+import Card from '@/app/components/UI/CardComponent.vue'
+import FormField from '@/app/components/UI/FormFieldComponent.vue'
+import LocawebLogo from '@/app/components/assets/images/LocawebLogo.vue'
+import { emailRegex } from '@/app/shared/constants/email-regex'
+import { authStore, userStore } from '@/app/store'
 
 const credentials = ref<LoginBody>({
   email: '',

@@ -1,12 +1,13 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
-import App from './App.vue'
 
 import './assets/main.css'
-import { authStore } from './store'
 
-const HomePage = () => import('./pages/Home/HomePage.vue')
-const Login = () => import('./pages/Login/LoginPage.vue')
+import App from './app/App.vue'
+import { authStore } from './app/store'
+
+const HomePage = () => import('./app/pages/Home/HomePage.vue')
+const Login = () => import('./app/pages/Login/LoginPage.vue')
 
 const routes = [
   { path: '/', redirect: '/login' },

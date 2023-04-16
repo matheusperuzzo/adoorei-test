@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 
-import type { HttpResponse, User } from '@/shared/models'
+import type { HttpResponse, User } from '@/app/shared/models'
 
 import { userStore } from './user'
 
