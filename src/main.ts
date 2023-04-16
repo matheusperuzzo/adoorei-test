@@ -5,13 +5,13 @@ import App from './App.vue'
 import './assets/main.css'
 import { authStore } from './store'
 
-const SignIn = () => import('./components/SignIn.vue')
-const HomePage = () => import('./components/HomePage.vue')
+const HomePage = () => import('./pages/Home/HomePage.vue')
+const Login = () => import('./pages/Login/LoginPage.vue')
 
 const routes = [
   { path: '/', redirect: '/login' },
-  { path: '/login', component: SignIn, name: 'login' },
-  { path: '/home', component: HomePage, name: 'home' }
+  { path: '/home', component: HomePage, name: 'home' },
+  { path: '/login', component: Login, name: 'login' }
 ]
 
 const router = createRouter({

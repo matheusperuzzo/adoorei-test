@@ -2,11 +2,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
+import Button from '@/components/UI/ButtonComponent.vue'
+import LocawebLogo from '@/components/assets/images/LocawebLogo.vue'
+import VideoImage from '@/components/assets/images/VideoImage.vue'
 import { authStore } from '@/store'
-
-import Button from './UI/ButtonComponent.vue'
-import LocawebLogo from './assets/images/LocawebLogo.vue'
-import VideoImage from './assets/images/VideoImage.vue'
 
 const router = useRouter()
 

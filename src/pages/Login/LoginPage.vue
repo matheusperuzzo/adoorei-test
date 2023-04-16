@@ -4,14 +4,13 @@ import { useRouter } from 'vue-router'
 
 import type { LoginBody } from '@/store'
 
+import Alert from '@/components/UI/AlertComponent.vue'
+import Button from '@/components/UI/ButtonComponent.vue'
+import Card from '@/components/UI/CardComponent.vue'
+import FormField from '@/components/UI/FormFieldComponent.vue'
+import LocawebLogo from '@/components/assets/images/LocawebLogo.vue'
 import { emailRegex } from '@/shared/constants/email-regex'
 import { authStore, userStore } from '@/store'
-
-import Alert from './UI/AlertComponent.vue'
-import Button from './UI/ButtonComponent.vue'
-import Card from './UI/CardComponent.vue'
-import FormField from './UI/FormFieldComponent.vue'
-import LocawebLogo from './assets/images/LocawebLogo.vue'
 
 const credentials = ref<LoginBody>({
   email: '',
