@@ -52,7 +52,13 @@ onMounted(() => {
         <h2 class="font-bold mb-1.25 text-3xl">Entre na sua conta</h2>
         <p class="leading-snug text-lg mb-5">Para acessar sua conta informe seu e-mail e senha</p>
         <Transition name="fade">
-          <Alert class="-mt-2 mb-4" :message="error" type="error" v-if="error" />
+          <Alert
+            class="-mt-2 mb-4"
+            @close="error = ''"
+            :message="error"
+            type="error"
+            v-if="error"
+          />
         </Transition>
         <FormField
           error-msg="Insira um endereço de e-mail válido."
