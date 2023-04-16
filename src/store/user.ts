@@ -1,5 +1,6 @@
-import type { User } from '@/shared/models/user.model'
 import { reactive } from 'vue'
+
+import type { User } from '@/shared/models'
 
 type UserStore = {
   users: User[]

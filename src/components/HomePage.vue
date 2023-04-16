@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import LocawebLogo from './icons/LocawebLogo.vue'
-import VideoImageVue from './images/VideoImage.vue'
-import { authStore } from '@/store'
 import { useRouter } from 'vue-router'
+
+import { authStore } from '@/store'
+
 import Button from './UI/ButtonComponent.vue'
+import LocawebLogo from './assets/images/LocawebLogo.vue'
+import VideoImage from './assets/images/VideoImage.vue'
 
 const router = useRouter()
 
@@ -42,7 +44,7 @@ const toggleShowLogout = () => {
     <div class="mx-auto w-8/12 max-w-244">
       <h2 class="font-bold leading-9 mb-3.75 text-7">Olá João,</h2>
       <p class="leading-5 mb-8">Seja bem vindo a sua conta de hospedagem.</p>
-      <VideoImageVue class="mb-9.5" />
+      <VideoImage class="mb-9.5" />
       <p class="leading-5">Caso tenha alguma dúvida, <a>visite nossa central de ajuda.</a></p>
     </div>
   </main>
