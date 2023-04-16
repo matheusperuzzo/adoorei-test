@@ -24,7 +24,7 @@ const classes = {
 </script>
 
 <template>
-  <Card :class="'flex items-center justify-between ' + classes[type]">
+  <Card :class="'flex items-center justify-between px-4 py-4 ' + classes[type]">
     <div>
       <h4 class="font-semibold">Houve um erro!</h4>
       <p class="text-sm">{{ message }}</p>
