@@ -4,6 +4,7 @@ import LocawebLogo from './icons/LocawebLogo.vue'
 import VideoImageVue from './images/VideoImage.vue'
 import { authStore } from '@/store'
 import { useRouter } from 'vue-router'
+import Button from './UI/ButtonComponent.vue'
 
 const router = useRouter()
 
@@ -25,15 +26,15 @@ const toggleShowLogout = () => {
     <nav class="flex items-center justify-between pl-8 pr-12 pt-8">
       <LocawebLogo />
       <div class="text-end">
-        <button
+        <Button
           @click="toggleShowLogout"
           class="bg-neutral font-bold h-13 inline-flex items-center justify-center leading-5.5 mb-2 rounded-full text-lg text-white w-13"
         >
           J
-        </button>
-        <button v-if="showLogout" @click="logout" class="bg-white block pl-20 pr-5 py-3 rounded-md">
+        </Button>
+        <Button v-if="showLogout" @click="logout" class="bg-white block pl-20 pr-5 py-3 rounded-md">
           Sair
-        </button>
+        </Button>
       </div>
     </nav>
   </header>

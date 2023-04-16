@@ -10,6 +10,7 @@ import type { LoginBody } from '@/store'
 import FormField from './UI/FormFieldComponent.vue'
 import Card from './UI/CardComponent.vue'
 import LocawebLogo from './icons/LocawebLogo.vue'
+import Button from './UI/ButtonComponent.vue'
 
 const credentials = ref<LoginBody>({
   email: '',
@@ -67,9 +68,12 @@ onMounted(() => {
         >
           <span class="block mt-1.25 text-end text-slate-700">Esqueci minha senha</span>
         </FormField>
-        <button class="bg-primary leading-5 py-7.5 rounded-md text-center text-white w-full">
+        <Button
+          class="bg-primary leading-5 py-7.5 rounded-md text-center text-white w-full"
+          type="submit"
+        >
           FAZER LOGIN
-        </button>
+        </Button>
       </form>
     </Card>
     <div class="leading-5.5 text-center text-lg">
