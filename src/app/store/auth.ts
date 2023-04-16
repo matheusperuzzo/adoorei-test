@@ -10,25 +10,26 @@ export interface LoginBody {
 }
 
 type AuthStore = {
-  token?: string
-  user?: User
+  token: string | null
+  user: User | null
   login: (body: LoginBody) => Promise<HttpResponse>
   logout: () => void
 }
 
-const checkUser = (email: string): User | null => {
-  const userExists = userStore.users.find((user) => user.email === email)
+const token = localStorage.getItem('token')
 
-  if (!userExists) {
-    return null
-  }
+let user: User | null = null
+const userString = localStorage.getItem('user')
 
-  return userExists
+if (userString) {
+  user = JSON.parse(userString)
 }
 
 export const authStore = reactive<AuthStore>({
+  token,
+  user,
   async login({ email, password }) {
-    const userExists = checkUser(email)
+    const userExists = userStore.checkUser(email)
 
     if (!userExists) {
       return {
@@ -55,6 +56,9 @@ export const authStore = reactive<AuthStore>({
     this.token = data.token
     this.user = userExists
 
+    localStorage.setItem('token', data.token)
+    localStorage.setItem('user', JSON.stringify(userExists))
+
     return {
       code: 200,
       body: {
@@ -63,7 +67,10 @@ export const authStore = reactive<AuthStore>({
     }
   },
   logout() {
-    delete this.token
-    delete this.user
+    this.token = null
+    this.user = null
+
+    localStorage.removeItem('token')
+    localStorage.removeItem('user')
   }
 })
