@@ -1,3 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface Props {
+  chosenProductId: number
+}
 
-<template>Second Step</template>
+defineProps<Props>()
+</script>
+
+<template>Second Step {{ chosenProductId }}</template>
