@@ -2,84 +2,7 @@
 import Button from '@/app/components/UI/ButtonComponent.vue'
 import Card from '@/app/components/UI/CardComponent.vue'
 import LocawebLogo from '@/app/components/assets/images/LocawebLogo.vue'
-
-const products = [
-  {
-    id: 0,
-    name: 'Hospedagem 1',
-    price: 0,
-    description: 'Ideal para quem está começando.',
-    country: 'Estados Unidos',
-    serverLoc: 'nossos data center americanos',
-    tecnologies:
-      'ASP, ASP.NET 2.0/3.0/3.5/ e 4.0/4.5/4.5.1/4.5.2 (medium trust) ou PHP 5.3, 5.4, 5.5, 5.6 e 7.0',
-    ftpUsersLimit: 1,
-    proEmailsLimit: 1,
-    subdomain: 1,
-    apps: ['Wordpress', 'Drupal', 'entre outros...'],
-    freeMigration: false,
-    extras: [
-      'Webmail RoundCube',
-      'AntiSpam',
-      'Painel de gerenciamento de DNS',
-      'Painel de controle web',
-      'Configurações de PHP personalizáveis',
-      'Certificado SSL Grátis',
-      'Transferência ilimitada'
-    ],
-    mostUsed: false
-  },
-  {
-    id: 1,
-    name: 'Hospedagem 2',
-    price: 499,
-    paymentInterval: 'mês',
-    description: 'Ideal para site com mais mais de 30k de visitas.',
-    country: 'Brasil',
-    serverLoc: 'São Paulo',
-    tecnologies:
-      'ASP, ASP.NET 2.0/3.0/3.5/ e 4.0/4.5/4.5.1/4.5.2 (medium trust) ou PHP 5.3, 5.4, 5.5, 5.6 e 7.0',
-    ftpUsersLimit: 10,
-    proEmailsLimit: 30,
-    subdomain: 10,
-    apps: ['Wordpress', 'Drupal', 'entre outros...'],
-    freeMigration: true,
-    extras: [
-      'Webmail RoundCube',
-      'AntiSpam',
-      'Painel de gerenciamento de DNS',
-      'Painel de controle web',
-      'Configurações de PHP personalizáveis',
-      'Certificado SSL Grátis',
-      'Transferência ilimitada'
-    ],
-    mostUsed: true
-  },
-  {
-    id: 2,
-    name: 'Hospedagem 3',
-    price: 999,
-    paymentInterval: 'mês',
-    description: 'Ideal para site com mais mais de 60k de visitas.',
-    country: 'Brasil',
-    serverLoc: 'São Paulo',
-    tecnologies:
-      'ASP, ASP.NET 2.0/3.0/3.5/ e 4.0/4.5/4.5.1/4.5.2 (medium trust) ou PHP 5.3, 5.4, 5.5, 5.6 e 7.0',
-    subdomain: 50,
-    apps: ['Wordpress', 'Drupal', 'entre outros...'],
-    freeMigration: true,
-    extras: [
-      'Webmail RoundCube',
-      'AntiSpam',
-      'Painel de gerenciamento de DNS',
-      'Painel de controle web',
-      'Configurações de PHP personalizáveis',
-      'Certificado SSL Grátis',
-      'Transferência ilimitada'
-    ],
-    mostUsed: false
-  }
-]
+import { products } from '@/app/shared/constants'
 </script>
 
 <template>
@@ -139,8 +62,18 @@ const products = [
               <li>
                 {{ product.tecnologies }}
               </li>
-              <li>{{ product.ftpUsersLimit }} usuário de FTP para upload ou download</li>
-              <li>{{ product.proEmailsLimit }} contas de e-mail profissional</li>
+              <li>
+                <span :class="`${!product.ftpUsersLimit && 'underline'}`">{{
+                  product.ftpUsersLimit || 'Ilimitados'
+                }}</span>
+                usuário de FTP para upload ou download
+              </li>
+              <li>
+                <span :class="`${!product.proEmailsLimit && 'underline'}`">{{
+                  product.proEmailsLimit || 'Ilimitados'
+                }}</span>
+                contas de e-mail profissional
+              </li>
               <li>
                 <span class="underline">{{ product.subdomain }} subdomínio</span> gratuito
               </li>
