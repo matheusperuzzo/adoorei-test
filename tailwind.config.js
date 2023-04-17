@@ -1,9 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  important: true,
   theme: {
     colors: {
       black: '#292d32',
+      gray: '#666666',
+      green: '#10C300',
       neutral: {
         50: '#fafafa',
         100: '#f4f4f4',
@@ -12,9 +15,9 @@ export default {
         400: '#dfdfdf',
         500: '#d9d9d9',
         600: '#d5d5d5',
-        700: 'cfcfcf',
-        800: 'cacaca',
-        900: 'c0c0c0',
+        700: '#cfcfcf',
+        800: '#cacaca',
+        900: '#c0c0c0',
         DEFAULT: '#d9d9d9'
       },
       primary: {
@@ -46,19 +49,41 @@ export default {
       white: '#ffffff'
     },
     extend: {
+      borderRadius: {
+        2.5: '0.625rem'
+      },
       fontSize: {
-        7: '1.75rem'
+        4.25: '1.0625rem',
+        6.5: '1.625rem',
+        7: '1.75rem',
+        8.5: '2.125rem'
+      },
+      lineHeight: {
+        4.5: '1.125rem',
+        5.5: '1.375rem',
+        10.5: '2.625rem'
+      },
+      listStyleImage: {
+        check: 'url("./src/assets/icons/check.svg")'
       },
       maxWidth: {
+        50.5: '12.625rem',
+        66.25: '16.563rem',
+        87: '21.75rem',
+        174.25: '43.5rem',
         244: '61rem'
       },
       spacing: {
         1.25: '0.313rem',
         3.75: '0.938rem',
+        4.5: '1.125rem',
+        5.5: '1.375rem',
         6.25: '1.563rem',
         7.5: '1.875rem',
         9.5: '2.35rem',
+        10.5: '2.625rem',
         13: '3.25rem',
+        15: '3.75rem',
         47.5: '11.875rem'
       }
     }
