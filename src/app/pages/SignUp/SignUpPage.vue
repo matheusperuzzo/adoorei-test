@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import FirstStep from './steps/FirstStep.vue'
 import LocawebLogo from '@/app/components/assets/images/LocawebLogo.vue'
+
+import FirstStep from './steps/FirstStep.vue'
+import SecondStep from './steps/SecondStep.vue'
 
 import type { Step } from '@/app/shared/models'
 
 const currentStep = ref<number>(1)
 
 const steps: Step = {
-  1: FirstStep
+  1: FirstStep,
+  2: SecondStep
 }
 </script>
 
