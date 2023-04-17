@@ -8,6 +8,14 @@ import SecondStep from './steps/SecondStep.vue'
 
 import type { Step } from '@/app/shared/models'
 
+const nextStep = (productId: number) => {
+  chosenProduct.value = productId
+
+  currentStep.value++
+}
+
+const chosenProduct = ref<number>()
+
 const currentStep = ref<number>(1)
 
 const steps: Step = {
@@ -23,6 +31,6 @@ const steps: Step = {
       Você está muito próximo de mudar a forma de
       <span class="text-primary underline">hospedar seu site</span>
     </h2>
-    <component :is="steps[currentStep]" />
+    <component :is="steps[currentStep]" @next-step="nextStep" />
   </main>
 </template>
