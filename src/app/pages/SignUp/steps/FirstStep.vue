@@ -4,7 +4,7 @@ import Card from '@/app/components/UI/CardComponent.vue'
 import { products } from '@/app/shared/constants'
 
 interface Emits {
-  (e: 'nextStep'): void
+  (e: 'nextStep', productId: number): void
 }
 
 defineEmits<Emits>()
@@ -48,7 +48,7 @@ defineEmits<Emits>()
         <div class="py-5">
           <Button
             class="bg-primary block leading-5 mb-10.5 mx-auto px-6 py-4.5 rounded-md text-white"
-            @click="$emit('nextStep')"
+            @click="$emit('nextStep', product.id)"
           >
             ESCOLHER ESSE PLANO
           </Button>
