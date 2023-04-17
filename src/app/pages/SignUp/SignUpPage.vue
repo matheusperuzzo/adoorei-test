@@ -6,8 +6,6 @@ import LocawebLogo from '@/app/components/assets/images/LocawebLogo.vue'
 import FirstStep from './steps/FirstStep.vue'
 import SecondStep from './steps/SecondStep.vue'
 
-import type { Step } from '@/app/shared/models'
-
 const nextStep = (productId: number) => {
   chosenProduct.value = productId
 
@@ -17,11 +15,6 @@ const nextStep = (productId: number) => {
 const chosenProduct = ref<number>()
 
 const currentStep = ref<number>(1)
-
-const steps: Step = {
-  1: FirstStep,
-  2: SecondStep
-}
 </script>
 
 <template>
@@ -31,6 +24,10 @@ const steps: Step = {
       Você está muito próximo de mudar a forma de
       <span class="text-primary underline">hospedar seu site</span>
     </h2>
-    <component :chosenProductId="chosenProduct" :is="steps[currentStep]" @next-step="nextStep" />
+    <FirstStep v-if="currentStep === 1" @next-step="nextStep" />
+    <SecondStep
+      :chosen-product-id="chosenProduct"
+      v-if="currentStep === 2 && chosenProduct !== undefined"
+    />
   </main>
 </template>
