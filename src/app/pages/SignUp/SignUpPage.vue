@@ -31,6 +31,6 @@ const steps: Step = {
       Você está muito próximo de mudar a forma de
       <span class="text-primary underline">hospedar seu site</span>
     </h2>
-    <component :is="steps[currentStep]" @next-step="nextStep" />
+    <component :chosenProductId="chosenProduct" :is="steps[currentStep]" @next-step="nextStep" />
   </main>
 </template>
