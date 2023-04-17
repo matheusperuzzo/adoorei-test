@@ -86,7 +86,8 @@ onMounted(() => {
       </form>
     </Card>
     <div class="leading-5.5 text-center text-lg">
-      Ainda não tem conta? <a class="text-primary underline" href="#">Cadastre-se</a>
+      Ainda não tem conta?
+      <router-link class="text-primary underline" to="/signup">Cadastre-se</router-link>
     </div>
   </main>
 </template>
