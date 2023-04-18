@@ -1,10 +1,10 @@
 import { reactive } from 'vue'
 
-import type { HttpResponse, User } from '@/app/shared/models'
+import type { CreateUserBody, HttpResponse, User } from '@/app/shared/models'
 
-type UserStore = {
+interface UserStore {
   users: User[]
-  addUser: (personalData: any) => Promise<HttpResponse>
+  addUser: (personalData: CreateUserBody) => Promise<HttpResponse>
   checkUser: (email: string) => User | null
   getAll: () => Promise<void>
 }
