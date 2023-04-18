@@ -32,7 +32,9 @@ defineProps<Props>()
 </script>
 
 <template>
-  <section class="flex gap-5 items-start justify-center mt-12">
+  <section
+    class="flex flex-col-reverse lg:flex-row gap-5 items-center lg:items-stretch justify-center mt-12"
+  >
     <Form @create-user="($event) => createUser($event)"></Form>
     <ChosenProduct
       @change-product="(_$event) => $emit('changeProduct')"

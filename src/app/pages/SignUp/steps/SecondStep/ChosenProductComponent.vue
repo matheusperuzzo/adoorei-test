@@ -20,15 +20,17 @@ defineEmits<Emits>()
 </script>
 
 <template>
-  <Card class="bg-white mx-0 relative max-w-87">
+  <Card class="bg-white mx-4 lg:mx-0 relative max-w-154.25 lg:max-w-87">
     <div
       class="absolute bg-black left-0 mx-auto px-4 py-2 right-0 rounded-2.5 text-white -top-4 max-w-max"
     >
       PLANO ESCOLHIDO
     </div>
-    <div class="divide-neutral-900/50 divide-y px-10 py-5">
+    <div
+      class="divide-neutral-900/50 divide-y max-h-74.5 lg:max-h-236.5 overflow-hidden px-10 py-5"
+    >
       <div class="py-5">
-        <h3 class="font-bold leading-8 mb-5 text-6.5 text-center">{{ product.name }}</h3>
+        <h3 class="font-bold leading-8 mb-5 text-6.5 text-center text-gray">{{ product.name }}</h3>
         <p class="leading-6.5 text-primary mb-3.5 text-center text-xl" v-if="product.price > 0">
           R$
           <span class="font-bold leading-10.5 text-8.5">{{ product.price }}</span>
@@ -45,7 +47,7 @@ defineEmits<Emits>()
           {{ product.description }}
         </p>
       </div>
-      <div class="py-5">
+      <div class="gradient py-5">
         <h4 class="font-bold leading-5.5 mb-2.5 text-4.25 text-gray max-w-66.25">
           Seu site em servidores <span class="underline">no {{ product.country }}.</span>
         </h4>
@@ -89,14 +91,12 @@ defineEmits<Emits>()
             <li>Migramos todos seus sites para nossos servidores</li>
           </ul>
         </div>
-        <div class="gradient max-h-24 overflow-hidden">
-          <h4 class="font-bold leading-5.5 mb-2.5 text-4.25 max-w-66.25">Você ainda tem</h4>
-          <ul class="leading-5.5 list-image-check list-inside mb space-y-2.5 text-4.25">
-            <li :key="extra" v-for="extra of product.extras">
-              {{ extra }}
-            </li>
-          </ul>
-        </div>
+        <h4 class="font-bold leading-5.5 mb-2.5 text-4.25 max-w-66.25">Você ainda tem</h4>
+        <ul class="leading-5.5 list-image-check list-inside mb space-y-2.5 text-4.25">
+          <li :key="extra" v-for="extra of product.extras">
+            {{ extra }}
+          </li>
+        </ul>
       </div>
     </div>
     <Button
@@ -112,7 +112,7 @@ defineEmits<Emits>()
 .gradient {
   background-clip: text;
   -webkit-background-clip: text;
-  background-image: linear-gradient(to bottom, #666666, #66666680);
+  background-image: linear-gradient(to bottom, #666666 50%, #66666633 70%);
   color: #fff;
   -webkit-text-fill-color: transparent;
 }

@@ -12,7 +12,7 @@ defineEmits<Emits>()
 
 <template>
   <p class="leading-5 mb-9 mt-5.5 text-center">Escolha seu plano</p>
-  <section class="flex gap-6 items-start justify-center">
+  <section class="flex flex-col lg:flex-row gap-6 items-center lg:items-start justify-center">
     <Card
       :class="`bg-white mx-0 ${product.mostUsed && 'relative'} max-w-87`"
       :key="product.id"
@@ -100,7 +100,7 @@ defineEmits<Emits>()
           <h4 class="font-bold leading-5.5 mb-2.5 text-4.25 text-gray max-w-66.25">
             Você ainda tem
           </h4>
-          <ul class="leading-5.5 list-image-check list-inside mb space-y-2.5 text-4.25 text-gray">
+          <ul class="leading-5.5 list-image-check list-inside space-y-2.5 text-4.25 text-gray">
             <li :key="extra" v-for="extra of product.extras">
               {{ extra }}
             </li>

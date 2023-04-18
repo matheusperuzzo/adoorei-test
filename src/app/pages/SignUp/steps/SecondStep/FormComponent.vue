@@ -95,13 +95,13 @@ watch(
 </script>
 
 <template>
-  <Card class="bg-white border border-slate-200 mx-0 px-3.5 max-w-154.25">
+  <Card class="bg-white border border-slate-200 mx-4 lg:mx-0 px-3.5 max-w-154.25">
     <form
-      class="divide-neutral-900/50 divide-y"
+      class="divide-neutral-900/50 divide-y grid h-full"
       ref="formRef"
       @submit="($event) => submitForm($event)"
     >
-      <div class="pb-5 pt-7 px-5">
+      <div class="pb-5 pt-7 lg:px-5">
         <Transition name="fade">
           <Alert
             class="mb-4"
@@ -167,7 +167,7 @@ watch(
           />
         </div>
       </div>
-      <div class="pb-4 pt-5 px-5">
+      <div class="pb-4 pt-5 lg:px-5">
         <h2 class="font-bold leading-9 text-7">Dados do seu site</h2>
         <FormField
           error-msg="Insira o nome do site"
@@ -184,8 +184,8 @@ watch(
           </p>
         </FormField>
       </div>
-      <div class="pb-7 pt-3.75 px-5">
-        <Checkbox class="mb-6.25" ref="checkboxRef">
+      <div class="lg:flex flex-auto flex-col justify-between pb-7 pt-3.75 lg:px-5">
+        <Checkbox class="mb-6.25 lg:mb-0" ref="checkboxRef">
           <p class="leading-5">
             Ao concluir com seu cadastro você concorda com nossos
             <span class="underline">termos de uso</span> e

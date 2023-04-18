@@ -26,7 +26,7 @@ const currentStep = ref<number>(1)
 <template>
   <main class="py-15">
     <LocawebLogo class="mx-auto mb-11" />
-    <h2 class="font-bold leading-9 mx-auto text-7 text-center max-w-174.25">
+    <h2 class="font-bold leading-9 mx-4 sm:mx-auto text-7 text-center max-w-174.25">
       Você está muito próximo de mudar a forma de
       <span class="text-primary underline">hospedar seu site</span>
     </h2>
