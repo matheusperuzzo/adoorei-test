@@ -2,22 +2,23 @@
 import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
-import type { LoginBody } from '@/app/store'
-
 import Alert from '@/app/components/UI/AlertComponent.vue'
 import Button from '@/app/components/UI/ButtonComponent.vue'
 import Card from '@/app/components/UI/CardComponent.vue'
 import FormField from '@/app/components/UI/FormFieldComponent.vue'
 import LocawebLogo from '@/app/components/assets/images/LocawebLogo.vue'
-import { emailRegex } from '@/app/shared/constants'
+
+import { emailValidation, passwordValidation } from '@/app/shared/constants'
 import { authStore, userStore } from '@/app/store'
+
+import type { LoginBody } from '@/app/shared/models'
 
 const credentials = ref<LoginBody>({
   email: '',
   password: ''
 })
 
-const error = ref('')
+const error = ref<string>('')
 
 const router = useRouter()
 
@@ -35,9 +36,6 @@ const authenticate = async (event: Event) => {
   })
 }
 
-const emailValidation = (value: string) => emailRegex.test(value)
-const passwordValidation = (value: string) => value.length >= 6
-
 onMounted(() => {
   userStore.getAll()
 })
@@ -53,7 +51,7 @@ onMounted(() => {
         <Transition name="fade">
           <Alert
             class="-mt-2 mb-4"
-            @close="error = ''"
+            @close="(_$event) => (error = '')"
             :message="error"
             type="error"
             v-if="error"
