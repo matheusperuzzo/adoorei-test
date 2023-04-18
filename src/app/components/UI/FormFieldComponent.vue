@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { FormFieldValidation } from '@/app/shared/models'
 import { computed, reactive } from 'vue'
+
+import type { FormFieldValidation } from '@/app/shared/models'
 
 interface Emits {
   (e: 'update:value', value: any): void
@@ -11,6 +12,7 @@ interface Props {
   errorMsg: string
   id: string
   labelText: string
+  mask?: string
   placeholder?: string
   type: string
   validationFn: (value: any) => boolean
@@ -47,9 +49,11 @@ const value = computed({
     <input
       @blur="($event) => formValidation.validate($event)"
       class="border border-slate-700/50 pl-4 py-7.5 rounded-md placeholder:text-black w-full"
+      :data-maska="mask || ''"
       :id="id"
       :placeholder="placeholder"
       :type="type"
+      v-maska
       v-model="value"
     />
     <span class="text-primary text-xs" v-if="formValidation.isTouched && !formValidation.isValid">{{
