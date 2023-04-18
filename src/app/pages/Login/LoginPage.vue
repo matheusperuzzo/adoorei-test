@@ -59,32 +59,34 @@ onMounted(() => {
             v-if="error"
           />
         </Transition>
-        <FormField
-          error-msg="Insira um endereço de e-mail válido"
-          id="email"
-          label-text="E-mail"
-          placeholder="Seu e-mail"
-          type="email"
-          :validation-fn="emailValidation"
-          v-model:value="credentials.email"
-        />
-        <FormField
-          error-msg="Insira uma senha válida (>= 6 caracteres)"
-          id="password"
-          label-text="Senha"
-          placeholder="Sua senha"
-          type="password"
-          :validation-fn="passwordValidation"
-          v-model:value="credentials.password"
-        >
-          <span class="block mt-1.25 text-end text-slate-700">Esqueci minha senha</span>
-        </FormField>
-        <Button
-          class="bg-primary leading-5 py-7.5 rounded-md text-center text-white w-full"
-          type="submit"
-        >
-          FAZER LOGIN
-        </Button>
+        <div class="space-y-3.75">
+          <FormField
+            error-msg="Insira um endereço de e-mail válido"
+            id="email"
+            label-text="E-mail"
+            placeholder="Seu e-mail"
+            type="email"
+            :validation-fn="emailValidation"
+            v-model:value="credentials.email"
+          />
+          <FormField
+            error-msg="Insira uma senha válida (>= 6 caracteres)"
+            id="password"
+            label-text="Senha"
+            placeholder="Sua senha"
+            type="password"
+            :validation-fn="passwordValidation"
+            v-model:value="credentials.password"
+          >
+            <span class="block mt-1.25 text-end text-slate-700">Esqueci minha senha</span>
+          </FormField>
+          <Button
+            class="bg-primary leading-5 py-7.5 rounded-md text-center text-white w-full"
+            type="submit"
+          >
+            FAZER LOGIN
+          </Button>
+        </div>
       </form>
     </Card>
     <div class="leading-5.5 text-center text-lg">
