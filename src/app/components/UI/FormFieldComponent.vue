@@ -10,6 +10,7 @@ interface FormValidation {
 interface Props {
   errorMsg: string
   id: string
+  labelText: string
   placeholder?: string
   type: string
   validationFn: (value: any) => boolean
@@ -39,8 +40,8 @@ const value = computed({
 </script>
 
 <template>
-  <div class="mb-3.75 w-full">
-    <label class="block leading-5" :for="id">E-mail</label>
+  <div class="w-full">
+    <label class="block leading-5" :for="id">{{ labelText }}</label>
     <input
       @blur="formValidation.validate"
       class="border border-slate-700/50 pl-4 py-7.5 rounded-md placeholder:text-black w-full"

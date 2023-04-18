@@ -9,7 +9,7 @@ import Button from '@/app/components/UI/ButtonComponent.vue'
 import Card from '@/app/components/UI/CardComponent.vue'
 import FormField from '@/app/components/UI/FormFieldComponent.vue'
 import LocawebLogo from '@/app/components/assets/images/LocawebLogo.vue'
-import { emailRegex } from '@/app/shared/constants/email-regex'
+import { emailRegex } from '@/app/shared/constants'
 import { authStore, userStore } from '@/app/store'
 
 const credentials = ref<LoginBody>({
@@ -60,16 +60,18 @@ onMounted(() => {
           />
         </Transition>
         <FormField
-          error-msg="Insira um endereço de e-mail válido."
+          error-msg="Insira um endereço de e-mail válido"
           id="email"
+          label-text="E-mail"
           placeholder="Seu e-mail"
           type="email"
           :validation-fn="emailValidation"
           v-model:value="credentials.email"
         />
         <FormField
-          error-msg="Insira uma senha válida (>= 6 caracteres)."
+          error-msg="Insira uma senha válida (>= 6 caracteres)"
           id="password"
+          label-text="Senha"
           placeholder="Sua senha"
           type="password"
           :validation-fn="passwordValidation"
