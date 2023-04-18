@@ -48,7 +48,7 @@ const value = computed({
     <label class="block leading-5" :for="id">{{ labelText }}</label>
     <input
       @blur="($event) => formValidation.validate($event)"
-      class="border border-slate-700/50 pl-4 py-7.5 rounded-md placeholder:text-black w-full"
+      class="border border-slate-700/50 pl-4 py-5 rounded-md placeholder:text-black w-full"
       :data-maska="mask || ''"
       :id="id"
       :placeholder="placeholder"
