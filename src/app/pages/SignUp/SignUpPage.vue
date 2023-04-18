@@ -12,6 +12,12 @@ const nextStep = (productId: number) => {
   currentStep.value++
 }
 
+const previousStep = () => {
+  delete chosenProduct.value
+
+  currentStep.value--
+}
+
 const chosenProduct = ref<number>()
 
 const currentStep = ref<number>(1)
@@ -26,6 +32,7 @@ const currentStep = ref<number>(1)
     </h2>
     <FirstStep v-if="currentStep === 1" @next-step="nextStep" />
     <SecondStep
+      @change-product="previousStep"
       :chosen-product-id="chosenProduct"
       v-if="currentStep === 2 && chosenProduct !== undefined"
     />
