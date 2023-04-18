@@ -1,3 +1,3 @@
-export * from './email-regex'
+export * from './regex'
 export * from './products'
 export * from './validationFunctions'
