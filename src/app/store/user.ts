@@ -9,8 +9,17 @@ interface UserStore {
   getAll: () => Promise<void>
 }
 
+let users: User[]
+const usersString = localStorage.getItem('users')
+
+if (!usersString) {
+  users = []
+} else {
+  users = JSON.parse(usersString)
+}
+
 export const userStore = reactive<UserStore>({
-  users: [],
+  users,
   async addUser(personalData) {
     const response = await fetch(`${import.meta.env.VITE_API_URL}users`, {
       method: 'POST',
@@ -44,5 +53,7 @@ export const userStore = reactive<UserStore>({
     const data = await response.json()
 
     this.users = data.map((user: User) => user)
+
+    localStorage.setItem('users', JSON.stringify(this.users))
   }
 })
