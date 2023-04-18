@@ -66,12 +66,19 @@ export default {
       listStyleImage: {
         check: 'url("./src/assets/icons/check.svg")'
       },
+      maxHeight: {
+        258.25: '64.5625rem'
+      },
       maxWidth: {
         50.5: '12.625rem',
         66.25: '16.563rem',
         87: '21.75rem',
+        154.25: '38.5625rem',
         174.25: '43.5rem',
         244: '61rem'
+      },
+      minWidth: {
+        3.5: '0.875rem'
       },
       spacing: {
         1.25: '0.313rem',
@@ -80,10 +87,12 @@ export default {
         5.5: '1.375rem',
         6.25: '1.563rem',
         7.5: '1.875rem',
+        8.5: '2.125rem',
         9.5: '2.35rem',
         10.5: '2.625rem',
         13: '3.25rem',
         15: '3.75rem',
+        18.25: '4.5625rem',
         47.5: '11.875rem'
       }
     }
