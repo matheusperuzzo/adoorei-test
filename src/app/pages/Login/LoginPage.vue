@@ -68,7 +68,7 @@ onMounted(() => {
             v-model:value="credentials.email"
           />
           <FormField
-            error-msg="Insira uma senha válida (>= 6 caracteres)"
+            error-msg="Insira uma senha válida (>= 8 caracteres)"
             id="password"
             label-text="Senha"
             placeholder="Sua senha"
