@@ -1,15 +1,34 @@
 import { reactive } from 'vue'
 
-import type { User } from '@/app/shared/models'
+import type { HttpResponse, User } from '@/app/shared/models'
 
 type UserStore = {
   users: User[]
+  addUser: (personalData: any) => Promise<HttpResponse>
   checkUser: (email: string) => User | null
   getAll: () => Promise<void>
 }
 
 export const userStore = reactive<UserStore>({
   users: [],
+  async addUser(personalData) {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}users`, {
+      method: 'POST',
+      body: JSON.stringify(personalData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    await response.json()
+
+    return {
+      code: 200,
+      body: {
+        message: 'Usuário criado com sucesso!'
+      }
+    }
+  },
   checkUser(email) {
     const userExists = this.users.find((user) => user.email === email)
 
