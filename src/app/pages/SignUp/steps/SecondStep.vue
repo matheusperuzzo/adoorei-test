@@ -7,18 +7,15 @@ import Checkbox from '@/app/components/UI/CheckboxComponent.vue'
 import { emailRegex, products } from '@/app/shared/constants'
 import FormField from '@/app/components/UI/FormFieldComponent.vue'
 
+interface Emits {
+  (e: 'changeProduct'): void
+}
+
 interface Props {
   chosenProductId: number
 }
 
-const props = defineProps<Props>()
-
-const emailValidation = (value: string) => emailRegex.test(value)
-const nameValidation = (value: string) => value.trim() === ''
-const passwordValidation = (value: string) => value.length === 6
-const passwordConfirmationValidation = (value: string) => value === personalData.password
-const phoneValidation = (value: string) => value.length === 11
-const siteValidation = (value: string) => value.trim() === ''
+defineEmits<Emits>()
 
 const personalData = reactive({
   name: '',
@@ -28,9 +25,18 @@ const personalData = reactive({
   passwordConfirmation: ''
 })
 
-const product = products[props.chosenProductId]
+const props = defineProps<Props>()
 
 const siteName = ref<string>('')
+
+const emailValidation = (value: string) => emailRegex.test(value)
+const nameValidation = (value: string) => value.trim() === ''
+const passwordValidation = (value: string) => value.length === 6
+const passwordConfirmationValidation = (value: string) => value === personalData.password
+const phoneValidation = (value: string) => value.length === 11
+const siteValidation = (value: string) => value.trim() === ''
+
+const product = products[props.chosenProductId]
 </script>
 
 <template>
@@ -198,7 +204,10 @@ const siteName = ref<string>('')
           </div>
         </div>
       </div>
-      <Button class="block border border-black mx-auto px-18.25 py-4.5 rounded-md">
+      <Button
+        class="block border border-black mx-auto px-18.25 py-4.5 rounded-md"
+        @click="$emit('changeProduct')"
+      >
         Trocar plano
       </Button>
     </Card>
