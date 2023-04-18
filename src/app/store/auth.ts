@@ -1,13 +1,8 @@
 import { reactive } from 'vue'
 
-import type { HttpResponse, User } from '@/app/shared/models'
-
 import { userStore } from './user'
 
-export interface LoginBody {
-  email: string
-  password: string
-}
+import type { HttpResponse, LoginBody, User } from '@/app/shared/models'
 
 type AuthStore = {
   token: string | null
