@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import LocawebLogo from '@/app/components/assets/images/LocawebLogo.vue'
 
 import FirstStep from './steps/FirstStep.vue'
-import SecondStep from './steps/SecondStep.vue'
+import SecondStep from './steps/SecondStep/SecondStep.vue'
 
 const nextStep = (productId: number) => {
   chosenProduct.value = productId
