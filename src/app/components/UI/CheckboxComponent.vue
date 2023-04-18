@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+
 import CheckIcon from '../assets/icons/CheckIcon.vue'
 
-const isChecked = ref(false)
+const isChecked = ref<boolean>(false)
 
 defineExpose({ isChecked })
 </script>
@@ -11,7 +12,7 @@ defineExpose({ isChecked })
   <label
     id="container"
     class="cursor-pointer flex gap-3 items-center"
-    @click="isChecked = !isChecked"
+    @click="(_$event) => (isChecked = !isChecked)"
   >
     <div
       id="custom-check"

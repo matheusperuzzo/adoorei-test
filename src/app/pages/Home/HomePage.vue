@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 import Button from '@/app/components/UI/ButtonComponent.vue'
 import LocawebLogo from '@/app/components/assets/images/LocawebLogo.vue'
 import VideoImage from '@/app/components/assets/images/VideoImage.vue'
+
 import { authStore } from '@/app/store'
 
 const router = useRouter()
