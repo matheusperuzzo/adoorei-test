@@ -1,15 +1,10 @@
 <script setup lang="ts">
+import type { FormFieldValidation } from '@/app/shared/models'
 import { computed, reactive } from 'vue'
 
 interface Emits {
   (e: 'update:value', value: any): void
   (e: 'isValid', isValid: boolean): void
-}
-
-interface FormValidation {
-  isTouched: boolean
-  isValid: boolean
-  validate: (event: Event) => void
 }
 
 interface Props {
@@ -25,7 +20,7 @@ interface Props {
 const emit = defineEmits<Emits>()
 const props = defineProps<Props>()
 
-const formValidation = reactive<FormValidation>({
+const formValidation = reactive<FormFieldValidation>({
   isTouched: false,
   isValid: false,
   validate(event) {
