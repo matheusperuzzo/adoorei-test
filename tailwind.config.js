@@ -67,6 +67,8 @@ export default {
         check: 'url("./src/assets/icons/check.svg")'
       },
       maxHeight: {
+        74.5: '18.625rem',
+        236.5: '59.125rem',
         258.25: '64.5625rem'
       },
       maxWidth: {
