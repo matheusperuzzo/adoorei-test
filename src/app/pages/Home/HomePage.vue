@@ -32,7 +32,7 @@ const toggleShowLogout = () => {
           @click="toggleShowLogout"
           class="bg-neutral font-bold h-13 inline-flex items-center justify-center leading-5.5 mb-2 rounded-full text-lg text-white w-13"
         >
-          J
+          {{ authStore.user?.name.firstname.charAt(0) }}
         </Button>
         <Button v-if="showLogout" @click="logout" class="bg-white block pl-20 pr-5 py-3 rounded-md">
           Sair
@@ -42,7 +42,7 @@ const toggleShowLogout = () => {
   </header>
   <main class="flex flex-col flex-auto items-center px-10 md:px-20 lg:px-40 py-9">
     <div class="max-w-244">
-      <h2 class="font-bold leading-9 mb-3.75 text-7">Olá João,</h2>
+      <h2 class="font-bold leading-9 mb-3.75 text-7">Olá {{ authStore.user?.name.firstname }},</h2>
       <p class="leading-5 mb-8">Seja bem vindo a sua conta de hospedagem.</p>
       <VideoImage class="mb-9.5" />
       <p class="leading-5">Caso tenha alguma dúvida, <a>visite nossa central de ajuda.</a></p>
