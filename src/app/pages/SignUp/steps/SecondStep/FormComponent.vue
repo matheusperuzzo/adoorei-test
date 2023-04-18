@@ -7,7 +7,7 @@ import Card from '@/app/components/UI/CardComponent.vue'
 import Checkbox from '@/app/components/UI/CheckboxComponent.vue'
 import FormField from '@/app/components/UI/FormFieldComponent.vue'
 
-import { emailValidation, passwordValidation } from '@/app/shared/constants'
+import { emailValidation, passwordValidation, phoneRegex } from '@/app/shared/constants'
 import { validateAll } from '@/app/shared/helpers'
 
 import type { CreateUserBody } from '@/app/shared/models'
@@ -54,7 +54,7 @@ const validationFns = reactive<SignUpValidationFns>({
   nameValidation: (value: string) => value.trim() !== '',
   passwordValidation,
   passwordConfirmationValidation: (value: string) => value === personalData.password.value,
-  phoneValidation: (value: string) => value.length === 11,
+  phoneValidation: (value: string) => phoneRegex.test(value),
   siteValidation: (value: string) => value.trim() !== ''
 })
 
@@ -129,6 +129,7 @@ watch(
             id="phone"
             @is-valid="($event) => (personalData.phone.isValid = $event)"
             label-text="Celular"
+            mask="(##) #####-####"
             placeholder="(99) 99999-0000"
             type="text"
             :validation-fn="validationFns.phoneValidation"
