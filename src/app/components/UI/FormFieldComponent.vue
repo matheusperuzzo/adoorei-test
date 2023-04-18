@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
 
+interface Emits {
+  (e: 'update:value', value: any): void
+  (e: 'isValid', isValid: boolean): void
+}
+
 interface FormValidation {
   isTouched: boolean
   isValid: boolean
-  validate: () => void
+  validate: (event: Event) => void
 }
 
 interface Props {
@@ -17,15 +22,17 @@ interface Props {
   value: any
 }
 
-const emit = defineEmits(['update:value'])
+const emit = defineEmits<Emits>()
 const props = defineProps<Props>()
 
 const formValidation = reactive<FormValidation>({
   isTouched: false,
   isValid: false,
-  validate() {
+  validate(event) {
+    const value = (event.target as HTMLInputElement).value
     this.isTouched = true
-    this.isValid = props.validationFn(value.value)
+    this.isValid = props.validationFn(value)
+    emit('isValid', this.isValid)
   }
 })
 
@@ -43,7 +50,7 @@ const value = computed({
   <div class="w-full">
     <label class="block leading-5" :for="id">{{ labelText }}</label>
     <input
-      @blur="formValidation.validate"
+      @blur="($event) => formValidation.validate($event)"
       class="border border-slate-700/50 pl-4 py-7.5 rounded-md placeholder:text-black w-full"
       :id="id"
       :placeholder="placeholder"
