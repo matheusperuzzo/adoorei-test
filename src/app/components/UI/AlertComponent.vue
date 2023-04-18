@@ -29,6 +29,6 @@ const classes = {
       <h4 class="font-semibold">Houve um erro!</h4>
       <p class="text-sm">{{ message }}</p>
     </div>
-    <Button @click="$emit('close')">X</Button>
+    <Button @click="(_$event) => $emit('close')">X</Button>
   </Card>
 </template>
