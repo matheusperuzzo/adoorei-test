@@ -14,6 +14,7 @@ import type { CreateUserBody } from '@/app/shared/models'
 
 interface Emits {
   (e: 'createUser', personalData: CreateUserBody): void
+  (e: 'update:error', value: string): void
 }
 
 interface PersonalDataForm {
@@ -23,6 +24,10 @@ interface PersonalDataForm {
   password: { value: string; isValid: boolean }
   passwordConfirmation: { value: string; isValid: boolean }
   site: { value: string; isValid: boolean }
+}
+
+interface Props {
+  error: string
 }
 
 interface SignUpValidationFns {
@@ -35,6 +40,8 @@ interface SignUpValidationFns {
 }
 
 const emit = defineEmits<Emits>()
+
+const props = defineProps<Props>()
 
 const checkboxRef = ref<InstanceType<typeof Checkbox> | null>()
 const formRef = ref<HTMLFormElement | null>()
@@ -57,6 +64,15 @@ const validationFns = reactive<SignUpValidationFns>({
   phoneValidation: (value: string) => phoneRegex.test(value),
   siteValidation: (value: string) => value.trim() !== ''
 })
+
+const closeAlert = () => {
+  if (props.error) {
+    emit('update:error', '')
+  }
+  if (!formIsValid.value) {
+    formIsValid.value = true
+  }
+}
 
 const validateTerms = (): boolean => {
   if (checkboxRef.value) {
@@ -87,6 +103,15 @@ const submitForm = (event: Event) => {
 }
 
 watch(
+  () => props.error,
+  (error) => {
+    if (error) {
+      formRef.value?.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+)
+
+watch(
   () => personalData.password.value,
   (password) => {
     validationFns.passwordConfirmationValidation = (value: string) => value === password
@@ -105,10 +130,10 @@ watch(
         <Transition name="fade">
           <Alert
             class="mb-4"
-            @close="(_$event) => (formIsValid = true)"
-            message="Verifique os campos do formulário e tente novamente!"
+            @close="(_$event) => closeAlert()"
+            :message="error || 'Verifique os campos do formulário e tente novamente!'"
             type="error"
-            v-if="!formIsValid"
+            v-if="!formIsValid || error"
           />
         </Transition>
         <h2 class="font-bold leading-9 mb-1.25 text-7">Dados pessoais</h2>
@@ -146,7 +171,7 @@ watch(
             v-model:value="personalData.email.value"
           />
           <FormField
-            error-msg="Insira uma senha válida (>= 6 caracteres)"
+            error-msg="Insira uma senha válida (>= 8 caracteres)"
             id="password"
             @is-valid="($event) => (personalData.password.isValid = $event)"
             label-text="Senha"
@@ -154,7 +179,7 @@ watch(
             :validation-fn="validationFns.passwordValidation"
             v-model:value="personalData.password.value"
           >
-            <p class="leading-4.5 mt-1.25 text-slate-600 text-sm">No mínimo 6 caracteres</p>
+            <p class="leading-4.5 mt-1.25 text-slate-600 text-sm">No mínimo 8 caracteres</p>
           </FormField>
           <FormField
             error-msg="As senhas não correspondem"
@@ -185,7 +210,7 @@ watch(
         </FormField>
       </div>
       <div class="lg:flex flex-auto flex-col justify-between pb-7 pt-3.75 lg:px-5">
-        <Checkbox class="mb-6.25 lg:mb-0" ref="checkboxRef">
+        <Checkbox class="mb-6.25" ref="checkboxRef">
           <p class="leading-5">
             Ao concluir com seu cadastro você concorda com nossos
             <span class="underline">termos de uso</span> e
