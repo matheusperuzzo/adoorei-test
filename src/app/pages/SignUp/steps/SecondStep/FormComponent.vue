@@ -7,13 +7,16 @@ import Card from '@/app/components/UI/CardComponent.vue'
 import Checkbox from '@/app/components/UI/CheckboxComponent.vue'
 import FormField from '@/app/components/UI/FormFieldComponent.vue'
 
-import { emailRegex } from '@/app/shared/constants'
+import { emailValidation, passwordValidation } from '@/app/shared/constants'
+import { validateAll } from '@/app/shared/helpers'
+
+import type { CreateUserBody } from '@/app/shared/models'
 
 interface Emits {
-  (e: 'createUser', personalData: { [key: string]: string }): void
+  (e: 'createUser', personalData: CreateUserBody): void
 }
 
-interface PersonalData {
+interface PersonalDataForm {
   name: { value: string; isValid: boolean }
   phone: { value: string; isValid: boolean }
   email: { value: string; isValid: boolean }
@@ -22,14 +25,22 @@ interface PersonalData {
   site: { value: string; isValid: boolean }
 }
 
+interface SignUpValidationFns {
+  emailValidation: (value: string) => boolean
+  nameValidation: (value: string) => boolean
+  passwordValidation: (value: string) => boolean
+  passwordConfirmationValidation: (value: string) => boolean
+  phoneValidation: (value: string) => boolean
+  siteValidation: (value: string) => boolean
+}
+
 const emit = defineEmits<Emits>()
 
-const checkbox = ref<InstanceType<typeof Checkbox> | null>()
-const form = ref<HTMLFormElement | null>()
-
+const checkboxRef = ref<InstanceType<typeof Checkbox> | null>()
+const formRef = ref<HTMLFormElement | null>()
 const formIsValid = ref<boolean>(true)
 
-const personalData = reactive<PersonalData>({
+const personalData = reactive<PersonalDataForm>({
   name: { value: '', isValid: false },
   phone: { value: '', isValid: false },
   email: { value: '', isValid: false },
@@ -38,22 +49,30 @@ const personalData = reactive<PersonalData>({
   site: { value: '', isValid: false }
 })
 
-const validationFns = reactive<{ [key: string]: (value: string) => boolean }>({
-  emailValidation: (value: string) => emailRegex.test(value),
+const validationFns = reactive<SignUpValidationFns>({
+  emailValidation,
   nameValidation: (value: string) => value.trim() !== '',
-  passwordValidation: (value: string) => value.length === 6,
+  passwordValidation,
   passwordConfirmationValidation: (value: string) => value === personalData.password.value,
   phoneValidation: (value: string) => value.length === 11,
   siteValidation: (value: string) => value.trim() !== ''
 })
 
+const validateTerms = (): boolean => {
+  if (checkboxRef.value) {
+    return checkboxRef.value.isChecked
+  }
+
+  return false
+}
+
 const submitForm = (event: Event) => {
   event.preventDefault()
 
-  formIsValid.value = validateAll()
+  formIsValid.value = validateAll(personalData, validationFns, [validateTerms])
 
   if (!formIsValid.value) {
-    form.value?.scrollIntoView({ behavior: 'smooth' })
+    formRef.value?.scrollIntoView({ behavior: 'smooth' })
     return
   }
 
@@ -63,33 +82,8 @@ const submitForm = (event: Event) => {
     phone: personalData.phone.value,
     password: personalData.password.value,
     passwordConfirmation: personalData.passwordConfirmation.value,
-    siteName: personalData.site.value
+    site: personalData.site.value
   })
-}
-
-const validateAll = () => {
-  let isAllValid = true
-  for (const data in personalData) {
-    if (Object.prototype.hasOwnProperty.call(personalData, data)) {
-      const isValid = validationFns[`${data}Validation`](
-        personalData[data as keyof PersonalData].value
-      )
-
-      if (!isValid) {
-        isAllValid = false
-      }
-    }
-  }
-
-  if (isAllValid) {
-    const termsIsChecked = checkbox.value?.isChecked
-
-    if (!termsIsChecked) {
-      isAllValid = false
-    }
-  }
-
-  return isAllValid
 }
 
 watch(
@@ -104,7 +98,7 @@ watch(
   <Card class="bg-white border border-slate-200 mx-0 px-3.5 max-w-154.25">
     <form
       class="divide-neutral-900/50 divide-y"
-      ref="form"
+      ref="formRef"
       @submit="($event) => submitForm($event)"
     >
       <div class="pb-5 pt-7 px-5">
@@ -190,7 +184,7 @@ watch(
         </FormField>
       </div>
       <div class="pb-7 pt-3.75 px-5">
-        <Checkbox class="mb-6.25" ref="checkbox">
+        <Checkbox class="mb-6.25" ref="checkboxRef">
           <p class="leading-5">
             Ao concluir com seu cadastro você concorda com nossos
             <span class="underline">termos de uso</span> e
