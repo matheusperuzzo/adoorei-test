@@ -40,7 +40,7 @@ const toggleShowLogout = () => {
       </div>
     </nav>
   </header>
-  <main class="flex flex-col flex-auto px-10 md:px-20 lg:px-40 py-9">
+  <main class="flex flex-col flex-auto items-center px-10 md:px-20 lg:px-40 py-9">
     <div class="max-w-244">
       <h2 class="font-bold leading-9 mb-3.75 text-7">Olá João,</h2>
       <p class="leading-5 mb-8">Seja bem vindo a sua conta de hospedagem.</p>
